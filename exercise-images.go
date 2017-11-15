@@ -3,12 +3,13 @@ package main
 import (
 	"image"
 	"image/color"
+
 	"golang.org/x/tour/pic"
 )
 
 type Image struct{
 	Width, Height int
-	Color int
+	f             int
 }
 
 func (i Image) ColorModel() color.Model {
@@ -20,10 +21,20 @@ func (i Image) Bounds() image.Rectangle {
 }
 
 func (i Image) At(x, y int) color.Color {
-	return color.RGBA{uint8(i.Color+x), uint8(i.Color+y), 255, 255}
+	var val int
+	switch i.f {
+	case 1:
+		val = (x + y) / 2
+	case 2:
+		val = x * y
+	case 3:
+		val = x ^ y
+	}
+
+	return color.RGBA{uint8(val), uint8(val), 255, 255}
 }
 
 func main() {
-	m := Image{100,100,42}
+	m := Image{100,100,1}
 	pic.ShowImage(m)
 }

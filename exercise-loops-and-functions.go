@@ -5,21 +5,23 @@ import (
 	"math"
 )
 
-func sqrt(x float64) float64 {
-	z, zold, diff := 1.0, 1.0, 1.0
-	steps := 1
-	for diff > 0.01 {
-		zold = z
-		z -= (z*z - x) / 2*z
-		if z > zold {
-			diff = z - zold
-		} else {
-			diff = zold - z
-		}
-		steps += 1
-		// fmt.Println("z=", z, "zold=", zold, "diff=", diff)
+func abs(x float64) float64 {
+	if x >= 0 {
+		return x;
 	}
-	fmt.Println("steps=", steps, "diff=", diff)
+	return -x;
+}
+
+func sqrt(x float64) float64 {
+	if (x < 0) {
+		return math.NaN()
+	}
+	
+	z, zold := 1.0, x
+	for abs(z - zold) >= 1.0e-6 {
+		zold, z = z, z - (z*z - x) / (2*z)
+	}
+
 	return z;
 }
 
@@ -36,8 +38,6 @@ func try(x float64) {
 
 func main() {
 	try(2)
+	try(-2)
 	try(42)
-
-	var q *int
-	*q = 42
 }
