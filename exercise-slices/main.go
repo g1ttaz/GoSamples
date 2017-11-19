@@ -4,6 +4,7 @@ import "golang.org/x/tour/pic"
 
 var f int
 
+// Pic draws a picture
 func Pic(dx, dy int) [][]uint8 {
 	p := make([][]uint8, dy)
 	for i := range p {
@@ -26,4 +27,3 @@ func main() {
 	f = 1
 	pic.Show(Pic)
 }
-

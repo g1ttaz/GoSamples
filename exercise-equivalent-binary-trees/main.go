@@ -6,7 +6,7 @@ import (
 	"golang.org/x/tour/tree"
 )
 
-// Inner walk
+// Walk0 is the inner walk
 func Walk0(t *tree.Tree, ch chan int) {
 	if t == nil {
 		return
@@ -41,7 +41,6 @@ func Same(t1, t2 *tree.Tree) bool {
 			return true
 		}
 	}
-	return true
 }
 
 func main() {

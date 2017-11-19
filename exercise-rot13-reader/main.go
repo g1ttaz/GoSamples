@@ -29,8 +29,8 @@ func (reader *rot13Reader) Read(b []byte) (int, error) {
 	if err != nil {
 		return n, err
 	}
-	
-	for i := range(b) {
+
+	for i := range b {
 		b[i] = rot13(b[i])
 	}
 	return n, nil
@@ -41,4 +41,3 @@ func main() {
 	r := rot13Reader{s}
 	io.Copy(os.Stdout, &r)
 }
-

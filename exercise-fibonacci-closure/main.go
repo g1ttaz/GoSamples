@@ -7,7 +7,7 @@ import "fmt"
 func fibonacci() func() int {
 	f0, f1 := 0, 1
 	return func() int {
-		f0, f1 = f1, f0 + f1   
+		f0, f1 = f1, f0+f1
 		return f1 - f0
 	}
 }
@@ -18,4 +18,3 @@ func main() {
 		fmt.Println(f())
 	}
 }
-

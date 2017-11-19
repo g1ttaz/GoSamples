@@ -5,12 +5,14 @@ import (
 	"sync"
 )
 
+// Fetcher interface
 type Fetcher interface {
 	// Fetch returns the body of URL and
 	// a slice of URLs found on that page.
 	Fetch(url string) (body string, urls []string, err error)
 }
 
+// Crawled is the map for all crawled data
 type Crawled struct {
 	urls  map[string]int
 	mutex sync.Mutex
@@ -52,7 +54,7 @@ func Crawl(url string, depth int, fetcher Fetcher) {
 func main() {
 	crawled = Crawled{urls: make(map[string]int)}
 	Crawl("http://golang.org/", 4, fetcher)
-	
+
 	for url, occurances := range crawled.urls {
 		fmt.Println("url=", url, "occurances=", occurances)
 	}

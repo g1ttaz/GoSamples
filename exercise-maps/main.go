@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// WordCount returns a map containing for every word the number of occurances in the text
 func WordCount(s string) map[string]int {
 	parts := strings.Fields(s)
 	m := make(map[string]int)
